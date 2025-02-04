@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Medal</string>
+    <string name="latest_version_title">最新版本</string>
+    <string name="latest_version_description">数据来源：戴夫藏宝阁</string>
+    <string name="error_title">出错了！</string>
+    <string name="retry">重试</string>
+</resources>
