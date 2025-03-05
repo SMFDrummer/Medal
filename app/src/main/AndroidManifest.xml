@@ -2,7 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <queries>
+        <!-- 声明需要与文档交互的intent -->
+        <intent>
+            <action android:name="android.intent.action.OPEN_DOCUMENT" />
+            <category android:name="android.intent.category.OPENABLE" />
+            <data android:mimeType="application/json" />
+        </intent>
+
+        <!-- 允许访问存储提供程序 -->
+        <provider android:authorities="com.android.externalstorage" />
+        <provider android:authorities="com.android.providers.downloads" />
+    </queries>
+
     <application
+            android:name=".MedalApplication"
             android:allowBackup="true"
             android:dataExtractionRules="@xml/data_extraction_rules"
             android:fullBackupContent="@xml/backup_rules"
@@ -11,7 +26,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.Medal"
-            tools:targetApi="31">
+            android:requestLegacyExternalStorage="true"
+            android:enableOnBackInvokedCallback="true"
+            tools:targetApi="35">
         <activity
                 android:name=".MainActivity"
                 android:exported="true"
@@ -20,6 +37,14 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- 接收文件选择结果的过滤器 -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.OPENABLE" />
+                <data android:mimeType="application/json" />
             </intent-filter>
         </activity>
     </application>

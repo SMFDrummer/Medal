@@ -1,30 +1,27 @@
 [versions]
 agp = "8.6.1"
 composables="1.0.0"
-lumo = "1.0.3"
+composeDestinations = "2.1.0-beta16"
+koin = "4.0.2"
+koinAnnotations = "2.0.0"
+lumo = "1.2.0"
 kotlin = "2.1.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
-activityCompose = "1.10.0"
-composeBom = "2025.01.01"
-kotlinxDatetime = "0.6.1"
-kotlinxSerializationJSON = "1.7.3"
-kotlinxCoroutines = "1.10.1"
-dataStore="1.1.1"
-# Ktor
-ktor="3.0.3"
-logback="3.0.0"
-# Core
-bcprov="1.78.1"
-materialIconsExtended = "1.7.7"
-reflections="0.10.2"
-# Core - database
-kronos="0.0.1"
-apacheCommonsDbcp2="2.13.0"
-sqliteJdbc="3.48.0.0"
+activityCompose = "1.10.1"
+composeBom = "2025.02.00"
+dataStore="1.1.3"
+materialIconsExtended = "1.7.8"
+arrowSuspendapp = "0.5.0"
+medalCore = "0.3"
+ksp = "2.1.0-1.0.29"
+arrow = "2.0.1"
+kronos = "0.0.1"
+file = "3.9.8"
+documentfile = "1.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -46,38 +43,38 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 
-kotlinxDatetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
-kotlinxSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJSON" }
-kotlinxCoroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
-kotlinxCoroutinesAndroid = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
-kotlinReflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+arrow-stack = { module = "io.arrow-kt:arrow-stack", version.ref = "arrow" }
+arrow-suspendApp = { module = "io.arrow-kt:suspendapp", version.ref = "arrowSuspendapp" }
+arrow-optics-ksp-plugin = { module = "io.arrow-kt:arrow-optics-ksp-plugin", version.ref = "arrow" }
 
+compose-destinations-core = { module = "io.github.raamcosta.compose-destinations:core", version.ref = "composeDestinations" }
+compose-destinations-ksp = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "composeDestinations" }
+compose-destinations-bottom-sheet = { module = "io.github.raamcosta.compose-destinations:bottom-sheet", version.ref = "composeDestinations" }
 
-# Ktor
-ktorClientCore = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-ktorClientCIO = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
-logback = { module = "com.github.tony19:logback-android", version.ref = "logback" }
-# Core
-bcprov = { module = "org.bouncycastle:bcprov-jdk18on", version.ref = "bcprov" }
-reflections = { module = "org.reflections:reflections", version.ref = "reflections" }
-# Core - database
-kronosCore = { module = "com.kotlinorm:kronos-core", version.ref = "kronos" }
-kronosJdbcWrapper = { module = "com.kotlinorm:kronos-jdbc-wrapper", version.ref = "kronos" }
-apacheCommonsDbcp2 = { module = "org.apache.commons:commons-dbcp2", version.ref = "apacheCommonsDbcp2" }
-sqliteJdbc = { module = "org.xerial:sqlite-jdbc", version.ref = "sqliteJdbc" }
+file-core = { module = "com.github.javakam:file.core", version.ref = "file" }
+file-selector = { module = "com.github.javakam:file.selector", version.ref = "file" }
+
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin"}
+koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koinAnnotations"}
+koin-ksp-compiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koinAnnotations"}
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin"}
+koin-androidx-compose-navigation = { module = "io.insert-koin:koin-androidx-compose-navigation", version.ref = "koin"}
+koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin"}
+koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin"}
+
+medal-core-android = { group = "io.github.smfdrummer", name = "medal-core-android", version.ref = "medalCore" }
+androidx-documentfile = { group = "androidx.documentfile", name = "documentfile", version.ref = "documentfile" }
 
 [bundles]
-kotlinxEcosystem = ["kotlinxDatetime", "kotlinxSerialization", "kotlinxCoroutinesCore", "kotlinxCoroutinesAndroid", "kotlinReflect"]
-ktorClient = ["ktorClientCore", "ktorClientCIO", "logback"]
-
-kronos = ["kronosCore", "kronosJdbcWrapper", "apacheCommonsDbcp2", "sqliteJdbc"]
+destinations = ["compose-destinations-core", "compose-destinations-bottom-sheet"]
+file = ["file-core", "file-selector"]
+koin = ["koin-android", "koin-annotations", "koin-androidx-compose", "koin-androidx-compose-navigation", "koin-ktor", "koin-logger-slf4j"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-
 kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+googleDevtoolsKsp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kronosGradlePlugin = { id = "com.kotlinorm.kronos-gradle-plugin", version.ref = "kronos" }
-
 lumo = { id = "com.nomanr.plugin.lumo", version.ref = "lumo" }

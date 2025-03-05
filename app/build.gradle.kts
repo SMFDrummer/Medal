@@ -2,8 +2,13 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+    alias(libs.plugins.kotlinPluginSerialization)
+    alias(libs.plugins.googleDevtoolsKsp)
+    alias(libs.plugins.kronosGradlePlugin)
+
     alias(libs.plugins.lumo)
-    id("com.google.relay") version "0.3.12"
+    // id("com.google.relay") version "0.3.12"
 }
 
 android {
@@ -64,8 +69,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
-
+    implementation(platform(libs.arrow.stack))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.datastore.preferences)
@@ -77,6 +81,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.documentfile)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -84,6 +89,19 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.arrow.suspendApp)
+    ksp(libs.arrow.optics.ksp.plugin)
+
+    implementation(libs.bundles.destinations)
+    ksp(libs.compose.destinations.ksp)
+
+    implementation(libs.bundles.file)
+
+    implementation(libs.medal.core.android)
+
+    implementation(libs.bundles.koin)
+    ksp(libs.koin.ksp.compiler)
 
     api(libs.composables)
 }

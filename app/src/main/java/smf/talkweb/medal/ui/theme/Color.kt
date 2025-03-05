@@ -52,6 +52,12 @@ val Green200: Color = Color(0xFFC2F5DA)
 val Green100: Color = Color(0xFFD0FBE9)
 val Green50: Color = Color(0xFFE0FAEC)
 
+val Orange900: Color = Color(0xFFFFA500)
+val Orange700: Color = Color(0xFFE9B710)
+val Orange500: Color = Color(0xFFFFCC11)
+val Orange300: Color = Color(0xFFFFEE88)
+val Orange100: Color = Color(0xFFFFF5D8)
+
 
 @Immutable
 data class Colors(
@@ -69,6 +75,9 @@ data class Colors(
 
     val success: Color,
     val onSuccess: Color,
+
+    val warn: Color,
+    val onWarn: Color,
 
     val disabled: Color,
     val onDisabled: Color,
@@ -109,8 +118,11 @@ internal val LightColors = Colors(
     error = Red600,
     onError = White,
 
-    success = Green600,
-    onSuccess = White,
+    success = Green500,
+    onSuccess = Gray50,
+
+    warn = Orange900,
+    onWarn = Gray900,
 
     disabled = Gray100,
     onDisabled = Gray500,
@@ -148,8 +160,11 @@ internal val DarkColors = Colors(
     error = Red400,
     onError = Black,
 
-    success = Green700,
-    onSuccess = Black,
+    success = Green600,
+    onSuccess = White,
+
+    warn = Orange300,
+    onWarn = Gray900,
 
     disabled = Gray700,
     onDisabled = Gray500,
@@ -183,8 +198,10 @@ fun Colors.contentColorFor(backgroundColor: Color): Color {
         surface -> onSurface
         error -> onError
         success -> onSuccess
+        warn -> onWarn
         disabled -> onDisabled
         background -> onBackground
         else -> Color.Unspecified
     }
 }
+

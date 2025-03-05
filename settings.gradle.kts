@@ -1,5 +1,6 @@
 pluginManagement {
     repositories {
+        mavenLocal()
         google {
             content {
                 includeGroupByRegex("com\\.android.*")
@@ -25,9 +26,11 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     @Suppress("UnstableApiUsage")
     repositories {
+        mavenLocal()
         google()
         mavenCentral()
         maven("https://maven.aliyun.com/repository/public")
+        maven("https://s01.oss.sonatype.org/content/groups/public")
         maven {
             credentials {
                 username = "6661af0c55d469d21fb755c5"
@@ -40,4 +43,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "Medal"
 include(":app")
-include(":core")

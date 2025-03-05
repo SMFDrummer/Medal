@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
@@ -21,13 +22,12 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import smf.talkweb.medal.ui.theme.MedalTheme
 import smf.talkweb.medal.ui.theme.LocalTypography
 import smf.talkweb.medal.ui.theme.components.Surface
-import smf.talkweb.medal.ui.theme.components.Text
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun Card(
@@ -36,17 +36,18 @@ fun Card(
     colors: CardColors = CardDefaults.cardColors(),
     elevation: CardElevation = CardDefaults.cardElevation(),
     border: BorderStroke? = null,
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) {
     Surface(
         modifier = modifier,
         shape = shape,
         color = colors.containerColor(enabled = true).value,
         contentColor = colors.contentColor(enabled = true).value,
-        shadowElevation = elevation.shadowElevation(
-            enabled = true,
-            interactionSource = null
-        ).value,
+        shadowElevation =
+            elevation.shadowElevation(
+                enabled = true,
+                interactionSource = null,
+            ).value,
         border = border,
     ) {
         Column(content = content)
@@ -63,7 +64,7 @@ fun Card(
     elevation: CardElevation = CardDefaults.cardElevation(),
     border: BorderStroke? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) {
     Surface(
         onClick = onClick,
@@ -84,16 +85,17 @@ fun Card(
 fun ElevatedCard(
     modifier: Modifier = Modifier,
     shape: Shape = CardDefaults.ElevatedShape,
+    border: BorderStroke? = null,
     colors: CardColors = CardDefaults.elevatedCardColors(),
     elevation: CardElevation = CardDefaults.elevatedCardElevation(),
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) = Card(
     modifier = modifier,
     shape = shape,
-    border = null,
+    border = border,
     elevation = elevation,
     colors = colors,
-    content = content
+    content = content,
 )
 
 @Composable
@@ -105,7 +107,7 @@ fun ElevatedCard(
     colors: CardColors = CardDefaults.elevatedCardColors(),
     elevation: CardElevation = CardDefaults.elevatedCardElevation(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) = Card(
     onClick = onClick,
     modifier = modifier,
@@ -115,7 +117,7 @@ fun ElevatedCard(
     elevation = elevation,
     border = null,
     interactionSource = interactionSource,
-    content = content
+    content = content,
 )
 
 @Composable
@@ -125,14 +127,14 @@ fun OutlinedCard(
     colors: CardColors = CardDefaults.outlinedCardColors(),
     elevation: CardElevation = CardDefaults.outlinedCardElevation(),
     border: BorderStroke = CardDefaults.outlinedCardBorder(),
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) = Card(
     modifier = modifier,
     shape = shape,
     border = border,
     elevation = elevation,
     colors = colors,
-    content = content
+    content = content,
 )
 
 @Composable
@@ -145,7 +147,7 @@ fun OutlinedCard(
     elevation: CardElevation = CardDefaults.outlinedCardElevation(),
     border: BorderStroke = CardDefaults.outlinedCardBorder(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) = Card(
     onClick = onClick,
     modifier = modifier,
@@ -155,7 +157,7 @@ fun OutlinedCard(
     elevation = elevation,
     border = border,
     interactionSource = interactionSource,
-    content = content
+    content = content,
 )
 
 object CardDefaults {
@@ -172,14 +174,15 @@ object CardDefaults {
         hoveredElevation: Dp = 1.0.dp,
         draggedElevation: Dp = 3.0.dp,
         disabledElevation: Dp = 0.0.dp,
-    ): CardElevation = CardElevation(
-        defaultElevation = defaultElevation,
-        pressedElevation = pressedElevation,
-        focusedElevation = focusedElevation,
-        hoveredElevation = hoveredElevation,
-        draggedElevation = draggedElevation,
-        disabledElevation = disabledElevation
-    )
+    ): CardElevation =
+        CardElevation(
+            defaultElevation = defaultElevation,
+            pressedElevation = pressedElevation,
+            focusedElevation = focusedElevation,
+            hoveredElevation = hoveredElevation,
+            draggedElevation = draggedElevation,
+            disabledElevation = disabledElevation,
+        )
 
     @Composable
     fun elevatedCardElevation(
@@ -189,14 +192,15 @@ object CardDefaults {
         hoveredElevation: Dp = 4.0.dp,
         draggedElevation: Dp = 4.0.dp,
         disabledElevation: Dp = 0.0.dp,
-    ): CardElevation = CardElevation(
-        defaultElevation = defaultElevation,
-        pressedElevation = pressedElevation,
-        focusedElevation = focusedElevation,
-        hoveredElevation = hoveredElevation,
-        draggedElevation = draggedElevation,
-        disabledElevation = disabledElevation
-    )
+    ): CardElevation =
+        CardElevation(
+            defaultElevation = defaultElevation,
+            pressedElevation = pressedElevation,
+            focusedElevation = focusedElevation,
+            hoveredElevation = hoveredElevation,
+            draggedElevation = draggedElevation,
+            disabledElevation = disabledElevation,
+        )
 
     @Composable
     fun outlinedCardElevation(
@@ -206,14 +210,15 @@ object CardDefaults {
         hoveredElevation: Dp = 1.0.dp,
         draggedElevation: Dp = 3.0.dp,
         disabledElevation: Dp = 0.0.dp,
-    ): CardElevation = CardElevation(
-        defaultElevation = defaultElevation,
-        pressedElevation = pressedElevation,
-        focusedElevation = focusedElevation,
-        hoveredElevation = hoveredElevation,
-        draggedElevation = draggedElevation,
-        disabledElevation = disabledElevation
-    )
+    ): CardElevation =
+        CardElevation(
+            defaultElevation = defaultElevation,
+            pressedElevation = pressedElevation,
+            focusedElevation = focusedElevation,
+            hoveredElevation = hoveredElevation,
+            draggedElevation = draggedElevation,
+            disabledElevation = disabledElevation,
+        )
 
     @Composable
     fun cardColors(
@@ -222,12 +227,13 @@ object CardDefaults {
         disabledContainerColor: Color =
             MedalTheme.colors.disabled,
         disabledContentColor: Color = MedalTheme.colors.onDisabled,
-    ): CardColors = CardColors(
-        containerColor = containerColor,
-        contentColor = contentColor,
-        disabledContainerColor = disabledContainerColor,
-        disabledContentColor = disabledContentColor
-    )
+    ): CardColors =
+        CardColors(
+            containerColor = containerColor,
+            contentColor = contentColor,
+            disabledContainerColor = disabledContainerColor,
+            disabledContentColor = disabledContentColor,
+        )
 
     @Composable
     fun elevatedCardColors(
@@ -241,7 +247,7 @@ object CardDefaults {
             containerColor = containerColor,
             contentColor = contentColor,
             disabledContainerColor = disabledContainerColor,
-            disabledContentColor = disabledContentColor
+            disabledContentColor = disabledContentColor,
         )
 
     @Composable
@@ -256,20 +262,22 @@ object CardDefaults {
             containerColor = containerColor,
             contentColor = contentColor,
             disabledContainerColor = disabledContainerColor,
-            disabledContentColor = disabledContentColor
+            disabledContentColor = disabledContentColor,
         )
 
     @Composable
     fun outlinedCardBorder(enabled: Boolean = true): BorderStroke {
-        val color = if (enabled) {
-            MedalTheme.colors.outline
-        } else {
-            MedalTheme.colors.disabled
-        }
+        val color =
+            if (enabled) {
+                MedalTheme.colors.outline
+            } else {
+                MedalTheme.colors.disabled
+            }
         return remember(color) { BorderStroke(BorderWidth, color) }
     }
 }
 
+@ConsistentCopyVisibility
 @Immutable
 data class CardColors internal constructor(
     private val containerColor: Color,
@@ -286,34 +294,34 @@ data class CardColors internal constructor(
     internal fun contentColor(enabled: Boolean): State<Color> {
         return rememberUpdatedState(if (enabled) contentColor else disabledContentColor)
     }
-
 }
 
-
 @Composable
-@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
-internal fun CardComponentSampleInTheme(){
+@Preview
+internal fun CardComponentSampleInTheme() {
     MedalTheme {
         CardComponentSample()
     }
 }
 
 @Composable
-@Preview(showBackground = true,)
+@Preview
 fun CardComponentSample() {
-    val cardModifier = Modifier
-        .fillMaxWidth()
-        .height(120.dp)
+    val cardModifier =
+        Modifier
+            .fillMaxWidth()
+            .height(120.dp)
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(24.dp)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         Column {
-            Text(text = "Default Card", style = LocalTypography.current.h3)
+            BasicText(text = "Default Card", style = LocalTypography.current.h3)
             Spacer(modifier = Modifier.height(8.dp))
 
             Card(
@@ -322,7 +330,7 @@ fun CardComponentSample() {
         }
 
         Column {
-            Text(text = "Elevated Card with Action", style = LocalTypography.current.h3)
+            BasicText(text = "Elevated Card with Action", style = LocalTypography.current.h3)
             ElevatedCard(
                 modifier = cardModifier,
                 onClick = { /* Handle click */ },
@@ -331,66 +339,71 @@ fun CardComponentSample() {
 
         // Outlined Card
         Column {
-            Text(text = "Custom Outlined Card", style = LocalTypography.current.h3)
+            BasicText(text = "Custom Outlined Card", style = LocalTypography.current.h3)
             OutlinedCard(
                 modifier = cardModifier,
             ) {}
         }
 
         Column {
-            Text(text = "Disabled Card", style = LocalTypography.current.h3)
+            BasicText(text = "Disabled Card", style = LocalTypography.current.h3)
             Card(
                 modifier = cardModifier,
                 onClick = { },
                 enabled = false,
-                colors = CardDefaults.cardColors(
-                    containerColor = Color(0xFFBDBDBD),
-                    contentColor = Color(0xFF9E9E9E),
-                    disabledContainerColor = Color(0xFFEEEEEE),
-                    disabledContentColor = Color(0xFFBDBDBD)
-                )
+                colors =
+                    CardDefaults.cardColors(
+                        containerColor = Color(0xFFBDBDBD),
+                        contentColor = Color(0xFF9E9E9E),
+                        disabledContainerColor = Color(0xFFEEEEEE),
+                        disabledContentColor = Color(0xFFBDBDBD),
+                    ),
             ) {}
         }
 
         Column {
-            Text(text = "Custom Colored Card", style = LocalTypography.current.h3)
+            BasicText(text = "Custom Colored Card", style = LocalTypography.current.h3)
             Card(
                 modifier = cardModifier,
-                colors = CardDefaults.cardColors(
-                    containerColor = Color(0xFFECEFF1),
-                    contentColor = Color(0xFF607D8B)
-                )
+                colors =
+                    CardDefaults.cardColors(
+                        containerColor = Color(0xFFECEFF1),
+                        contentColor = Color(0xFF607D8B),
+                    ),
             ) {}
         }
 
         Column {
-            Text(text = "Outlined Card with Hover Elevation", style = LocalTypography.current.h3)
+            BasicText(text = "Outlined Card with Hover Elevation", style = LocalTypography.current.h3)
             OutlinedCard(
                 modifier = cardModifier,
                 onClick = { /* Handle click */ },
-                elevation = CardDefaults.outlinedCardElevation(
-                    defaultElevation = 0.dp,
-                    hoveredElevation = 4.dp
-                ),
+                elevation =
+                    CardDefaults.outlinedCardElevation(
+                        defaultElevation = 0.dp,
+                        hoveredElevation = 4.dp,
+                    ),
                 border = BorderStroke(1.dp, Color(0xFFBDBDBD)),
-                colors = CardDefaults.outlinedCardColors(
-                    containerColor = Color(0xFFE0E0E0),
-                    contentColor = Color(0xFF616161)
-                )
+                colors =
+                    CardDefaults.outlinedCardColors(
+                        containerColor = Color(0xFFE0E0E0),
+                        contentColor = Color(0xFF616161),
+                    ),
             ) {}
         }
 
         // Interactive Card
         Column {
-            Text(text = "Interactive Card", style = LocalTypography.current.h3)
+            BasicText(text = "Interactive Card", style = LocalTypography.current.h3)
             Card(
                 modifier = cardModifier,
                 onClick = { /* Handle click */ },
-                colors = CardDefaults.cardColors(
-                    containerColor = Color(0xFFECEFF1),
-                    contentColor = Color(0xFF455A64)
-                ),
-                enabled = true
+                colors =
+                    CardDefaults.cardColors(
+                        containerColor = Color(0xFFECEFF1),
+                        contentColor = Color(0xFF455A64),
+                    ),
+                enabled = true,
             ) {}
         }
     }
