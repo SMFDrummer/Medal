@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+medal.keystore
+relay.token
